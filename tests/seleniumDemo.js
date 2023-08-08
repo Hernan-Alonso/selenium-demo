@@ -1,7 +1,4 @@
 const { Builder, By, Key, until, Capabilities } = require("selenium-webdriver");
-const assert = require("assert");
-var should = require("chai").should();
-
 describe("Test for Google search keyword Selenium ", () => {
   it("Open second result in new tab and check value of tab", async () => {
     let driver = await new Builder()
@@ -25,17 +22,19 @@ describe("Test for Google search keyword Selenium ", () => {
         if (await div.isDisplayed()) {
           const link = await div.findElement(By.css("a[data-ved]"));
           await driver.executeScript("arguments[0].scrollIntoView();", link);
+          const commandKey =
+            process.platform === "darwin" ? Key.COMMAND : Key.CONTROL;
           await driver
             .actions()
-            .keyDown(Key.COMMAND)
+            .keyDown(commandKey)
             .click(link)
-            .keyUp(Key.COMMAND)
+            .keyUp(commandKey)
             .perform();
           const tabs = await driver.getAllWindowHandles();
           await driver.switchTo().window(tabs[1]);
           await driver.wait(until.elementLocated(By.css("h1")), 10000);
           const newTabTitle = await driver.getTitle();
-          console.log(newTabTitle);
+          console.log("New  Tab Name is: ", newTabTitle);
           break;
         }
       }
