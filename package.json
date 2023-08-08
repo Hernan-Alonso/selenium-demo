@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --no-timeouts --reporter mochawesome --require mochawesome/register --reporter-options reportDir=/Users/hernanalonso/Documents/SeleniumJavascript/seleniumDemo/test-reports 'tests/*.js'"
+    "test": "mocha --no-timeouts --reporter mochawesome --require mochawesome/register --reporter-options reportDir=./test-reports 'tests/*.js'"
   },
   "author": "",
   "license": "ISC",
